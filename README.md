@@ -24,7 +24,7 @@
 本プラグインは Movable Type 製品サポートの対象外となります。
 不具合・ご要望は GitHub リポジトリの Issues の方までご連絡ください。
 
-https://github.com/movabletype/mt-plugin-copy-this-content-data/issues
+https://github.com/miniuchi/mt-plugin-copy-this-content-data/issues
 
 ## ライセンス
 
