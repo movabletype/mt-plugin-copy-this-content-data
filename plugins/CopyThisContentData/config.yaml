@@ -3,7 +3,7 @@ key: CopyThisContentData
 name: Copy This Content Data
 description: <MT_TRANS phrase="This plugin provides a simple way to copy existing content data.">
 version: 0.01
-author_name: Six Apart, Ltd.
+author_name: Six Apart Ltd.
 plugin_link: https://github.com/miniuchi/mt-plugin-copy-this-content-data
 
 l10n_class: CopyThisContentData::L10N
