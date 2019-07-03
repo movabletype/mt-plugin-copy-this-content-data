@@ -1,5 +1,7 @@
 # CopyThisContentData プラグイン for Movable Type
 
+[![Build Status](https://travis-ci.org/miniuchi/mt-plugin-copy-this-content-data.svg?branch=master)](https://travis-ci.org/miniuchi/mt-plugin-copy-this-content-data)
+
 コンテンツデータをコピーして、新しいコンテンツデータを作成可能にします。
 
 ## ダウンロード
