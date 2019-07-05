@@ -89,8 +89,6 @@ sub _set_params {
     # Change status
     $param->{new_object} = 1;
     $param->{status}     = MT::ContentStatus::HOLD();
-    $param->{title}
-        = _get_plugin()->translate( 'Copy of [_1]', $param->{title} );
     delete $param->{"status_publish"};
     delete $param->{"status_review"};
     delete $param->{"status_spam"};
@@ -102,29 +100,13 @@ sub _set_params {
     my $content_type = $origin->content_type;
     if ( $content_type->data_label ) {
         $param->{can_edit_data_label} = 0;
-        if ($orig_id) {
-            $param->{data_label}
-                = $app->param('data_label') || $origin->label;
-        }
-        else {
-            my $field = MT->model('content_field')->load(
-                {   content_type_id => $content_type->id,
-                    unique_id       => $content_type->data_label,
-                }
-                )
-                or die MT->translate(
-                'Cannot load content field (UniqueID:[_1]).',
-                $content_type->data_label );
-            $param->{data_label}
-                = $app->translate(
-                'The value of [_1] is automatically used as a data label.',
-                $field->name );
-        }
     }
     else {
         $param->{can_edit_data_label} = 1;
-        $param->{data_label}          = $app->param('data_label')
-            || ( $orig_id ? $origin->label : '' );
+        $param->{data_label}
+            = _get_plugin()
+            ->translate( 'Copy of [_1]',
+            $app->param('data_label') || $origin->label );
     }
 }
 
