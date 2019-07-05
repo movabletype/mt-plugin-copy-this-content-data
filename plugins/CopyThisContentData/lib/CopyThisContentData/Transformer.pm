@@ -97,15 +97,23 @@ sub _set_params {
     $param->{"status_draft"} = 1;
 
     # data_label
+    my $plugin       = _get_plugin();
     my $content_type = $origin->content_type;
     if ( $content_type->data_label ) {
         $param->{can_edit_data_label} = 0;
+        my ($label_field)
+            = grep { $_->{unique_id} eq $content_type->data_label }
+            @{ $param->{fields} || [] };
+        if ($label_field) {
+            $label_field->{value} = '' unless defined $label_field->{value};
+            $label_field->{value}
+                = $plugin->translate( 'Copy of [_1]', $label_field->{value} );
+        }
     }
     else {
         $param->{can_edit_data_label} = 1;
         $param->{data_label}
-            = _get_plugin()
-            ->translate( 'Copy of [_1]',
+            = $plugin->translate( 'Copy of [_1]',
             $app->param('data_label') || $origin->label );
     }
 }
