@@ -20,6 +20,7 @@ my %Skip_cols = map { $_ => 1 } qw(
     id
     identifier
     unique_id
+    revision
 );
 
 sub template_param_edit_content_data {
@@ -81,8 +82,9 @@ sub _set_params {
     }
 
     my $cols = $content_data_class->column_names;
-    for my $col (@$cols) {
-        next if $Skip_cols{$cols};
+    my @meta_cols = map { $_->{name} } MT::Meta->metadata_by_class( $content_data_class );
+    for my $col (@$cols, @meta_cols) {
+        next if $Skip_cols{$col};
         $param->{$col} = $origin->$col;
     }
 
